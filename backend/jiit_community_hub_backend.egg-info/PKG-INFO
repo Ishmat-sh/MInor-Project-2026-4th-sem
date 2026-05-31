@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: jiit-community-hub-backend
+Version: 0.1.0
+Summary: JIIT Community Hub Flask Backend
+Requires-Python: >=3.12
+Requires-Dist: fastapi[standard]>=0.128.1
+Requires-Dist: python-multipart>=0.0.9

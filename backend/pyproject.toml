@@ -1,0 +1,9 @@
+[project]
+name = "jiit-community-hub-backend"
+version = "0.1.0"
+description = "JIIT Community Hub Flask Backend"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.128.1",
+    "python-multipart>=0.0.9"
+]

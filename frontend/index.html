@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIIT Community Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-orbs">
+        <div class="orb orb-blue"></div>
+        <div class="orb orb-purple"></div>
+        <div class="orb orb-teal"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Login Section -->
+    <section id="login-section" class="login-section">
+        <div class="login-container">
+
+            <!-- Left Side - Branding -->
+            <div class="branding animate-on-scroll">
+                <div class="live-badge">
+                    <span class="pulse-dot"></span>
+                    <span>JIIT Noida &middot; 2025-26</span>
+                </div>
+                <h1 class="brand-title">
+                    JIIT <span class="gradient-text">Community</span> Hub
+                </h1>
+                <p class="brand-subtitle">
+                    Your centralized platform for campus communities, events, and college life
+                </p>
+            </div>
+
+            <!-- Right Side - Login Card -->
+            <div class="login-card glass-card animate-on-scroll" style="transition-delay: 100ms;">
+                <div class="card-highlight"></div>
+                <h2 class="login-title">Welcome back</h2>
+                <p class="login-subtitle">Sign in to your JIIT account</p>
+
+                <div id="login-alert" class="alert hidden"></div>
+
+                <form id="login-form" class="login-form">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <input type="email" id="email" placeholder="yourname@jiit.ac.in" required>
+                        </div>
+                        <div id="email-hint" class="input-hint hidden"></div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <input type="password" id="password" placeholder="Password" required>
+                            <button type="button" id="toggle-password" class="toggle-password">
+                                <svg id="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <svg id="eye-closed" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="login-btn" class="btn-primary">
+                        <span class="btn-text">Sign in</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard-section" class="dashboard-section hidden">
+
+        <!-- Fixed Navbar -->
+        <nav id="navbar" class="navbar">
+            <div class="nav-content">
+                <a href="#" class="nav-brand">JIIT Hub</a>
+                <div class="nav-links">
+                    <a href="#dashboard-hero" class="nav-link active">Dashboard</a>
+                    <a href="#communities-section" class="nav-link">Communities</a>
+                    <a href="#events-section" class="nav-link">Events</a>
+                    <a href="#recruitment-section" class="nav-link">Recruitment</a>
+                    <a href="#admin-section" class="nav-link admin-link hidden">Admin</a>
+                </div>
+                <div class="nav-right">
+                    <!-- Notification Bell -->
+                    <div class="notif-wrap" id="notif-wrap">
+                        <button class="notif-btn" id="notif-btn" aria-label="Notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                            <span class="notif-badge hidden" id="notif-badge">0</span>
+                        </button>
+                        <div class="notif-dropdown hidden" id="notif-dropdown">
+                            <div class="notif-header">
+                                <span class="notif-header-title">Notifications</span>
+                                <button class="notif-mark-all" id="notif-mark-all">Mark all read</button>
+                            </div>
+                            <div class="notif-list" id="notif-list">
+                                <div class="notif-empty">No new notifications</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Avatar -->
+                    <div class="nav-user">
+                        <button id="user-avatar" class="user-avatar">
+                            <span id="user-initials">JD</span>
+                        </button>
+                        <div id="user-dropdown" class="user-dropdown hidden">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <button id="logout-btn" class="dropdown-item">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div id="dashboard-hero" class="dashboard-hero animate-on-scroll">
+            <h1 class="hero-title">Welcome back, <span id="user-name">User</span></h1>
+            <p class="hero-date" id="current-date"></p>
+            <div class="hero-badges">
+                <span class="badge badge-blue" id="communities-count">0 Communities</span>
+                <span class="badge badge-purple" id="events-count">0 Upcoming Events</span>
+            </div>
+        </div>
+
+        <!-- Communities Section -->
+        <div id="communities-section" class="section animate-on-scroll">
+            <div class="section-header">
+                <div class="section-accent section-accent-blue"></div>
+                <h2 class="section-title">Campus Communities</h2>
+            </div>
+            <div id="communities-grid" class="communities-grid"></div>
+        </div>
+
+        <!-- Events Section -->
+        <div id="events-section" class="section animate-on-scroll">
+            <div class="section-header">
+                <div class="section-accent section-accent-purple"></div>
+                <h2 class="section-title">Events</h2>
+            </div>
+            <div id="events-list" class="events-list"></div>
+        </div>
+
+        <!-- Recruitment Section -->
+        <div id="recruitment-section" class="section animate-on-scroll">
+            <div class="section-header">
+                <div class="section-accent section-accent-teal"></div>
+                <h2 class="section-title">Recruitment Results</h2>
+            </div>
+            <p class="section-subtitle">Check if you have been selected for any community</p>
+            <div id="recruitment-list" class="recruitment-list">
+                <div class="empty-state">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <p>No recruitment results yet</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Section -->
+        <div id="admin-section" class="section admin-section hidden animate-on-scroll">
+            <div class="admin-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Admin Access</span>
+            </div>
+
+            <div class="admin-grid">
+
+                <!-- Add Event Form -->
+                <div class="admin-card glass-card">
+                    <div class="card-highlight"></div>
+                    <h3 class="admin-card-title">Add New Event</h3>
+                    <form id="add-event-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="event-title">Event Title</label>
+                            <input type="text" id="event-title" placeholder="Enter event title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Date</label>
+                            <input type="date" id="event-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-timing">Timing</label>
+                            <input type="text" id="event-timing" placeholder="e.g. 7:00 PM" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-venue">Venue</label>
+                            <input type="text" id="event-venue" placeholder="e.g. Auditorium Block A" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-community">Community</label>
+                            <select id="event-community" required>
+                                <option value="">Select community</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-status">Status</label>
+                            <select id="event-status" required>
+                                <option value="upcoming">Upcoming</option>
+                                <option value="ongoing">Ongoing</option>
+                                <option value="past">Past</option>
+                            </select>
+                        </div>
+                        <div id="add-event-alert" class="alert hidden"></div>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">Add Event</span>
+                            <div class="spinner hidden"></div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Events Management Table -->
+                <div class="admin-card glass-card">
+                    <div class="card-highlight"></div>
+                    <h3 class="admin-card-title">Manage Events</h3>
+                    <div class="table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Timing</th>
+                                    <th>Venue</th>
+                                    <th>Community</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="events-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Add Recruitment Result -->
+                <div class="admin-card glass-card">
+                    <div class="card-highlight"></div>
+                    <h3 class="admin-card-title">Add Recruitment Result</h3>
+                    <form id="add-recruitment-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="recruit-name">Student Name</label>
+                            <input type="text" id="recruit-name" placeholder="Full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recruit-email">Student Email</label>
+                            <input type="email" id="recruit-email" placeholder="student@jiit.ac.in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recruit-community">Community</label>
+                            <select id="recruit-community" required>
+                                <option value="">Select community</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recruit-status">Result</label>
+                            <select id="recruit-status" required>
+                                <option value="selected">Selected</option>
+                                <option value="rejected">Not Selected</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recruit-expires">Visible for (days)</label>
+                            <input type="number" id="recruit-expires" value="7" min="1" max="30" required>
+                        </div>
+                        <div id="add-recruitment-alert" class="alert hidden"></div>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">Announce Result</span>
+                            <div class="spinner hidden"></div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Recruitment Results Table -->
+                <div class="admin-card glass-card">
+                    <div class="card-highlight"></div>
+                    <h3 class="admin-card-title">Active Recruitment Results</h3>
+                    <div class="table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Email</th>
+                                    <th>Community</th>
+                                    <th>Result</th>
+                                    <th>Expires</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recruitment-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Send Custom Notification -->
+                <div class="admin-card glass-card">
+                    <div class="card-highlight"></div>
+                    <h3 class="admin-card-title">Send Notification</h3>
+                    <form id="send-notif-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="notif-title-input">Title</label>
+                            <input type="text" id="notif-title-input" placeholder="Notification title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notif-message-input">Message</label>
+                            <textarea id="notif-message-input" placeholder="Notification message..." rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="notif-role">Send to</label>
+                            <select id="notif-role">
+                                <option value="all">All Users</option>
+                                <option value="student">Students Only</option>
+                                <option value="admin">Admins Only</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notif-type">Type</label>
+                            <select id="notif-type">
+                                <option value="info">Info</option>
+                                <option value="success">Success</option>
+                                <option value="warning">Warning</option>
+                                <option value="error">Alert</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notif-expires">Expires in (days)</label>
+                            <input type="number" id="notif-expires" value="3" min="1" max="30">
+                        </div>
+                        <div id="send-notif-alert" class="alert hidden"></div>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">Send Notification</span>
+                            <div class="spinner hidden"></div>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Modal -->
+    <div id="join-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-card">
+            <div class="card-highlight"></div>
+            <button id="close-modal" class="modal-close">&times;</button>
+
+            <div id="join-form-container">
+                <h2 class="modal-title">Join <span id="modal-community-name">Community</span></h2>
+                <p class="modal-subtitle">Fill in your details to request membership</p>
+
+                <form id="join-form" class="join-form">
+                    <input type="hidden" id="join-community-id">
+                    <div class="form-group">
+                        <label for="join-name">Full Name</label>
+                        <input type="text" id="join-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="join-enrollment">Enrollment Number</label>
+                        <input type="text" id="join-enrollment" placeholder="e.g. 21103001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="join-branch">Branch</label>
+                        <input type="text" id="join-branch" placeholder="e.g. CSE, IT, ECE" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="join-semester">Semester</label>
+                        <select id="join-semester" required>
+                            <option value="">Select semester</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="join-reason">Why do you want to join?</label>
+                        <textarea id="join-reason" placeholder="Tell us about your interest..." rows="3" required></textarea>
+                    </div>
+                    <button type="submit" id="join-submit-btn" class="btn-primary">
+                        <span class="btn-text">Submit Request</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+            </div>
+
+            <div id="join-success" class="join-success hidden">
+                <svg class="success-checkmark" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h3>Request Submitted!</h3>
+                <p>We'll notify you via email once your request is reviewed.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
